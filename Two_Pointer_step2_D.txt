@@ -1,0 +1,38 @@
+from collections import defaultdict
+
+def main():
+    n, s = map(int, input().split())
+    v = list(map(int, input().split()))
+    
+    r = 0
+    ans = 0
+    sum = 0
+    l = 0
+    r = 0
+
+    
+    while r < len(v):
+        sum += v[r]
+        
+        #2  calculate the number of windows ending at current r.
+        #    all the previous windows i.e. "l" before the loop and windows ending 
+        #   ending at current r.     
+        while sum >= s:
+            sum -= v[l]
+            l +=1
+            
+        ans += l # ending at a given r , how many matching windows exist.
+                 # why +=? if at r == 5 , we had 3 matching windows
+                 #           then at r == 8 , we have atleast 3 + windows calculated by #2
+                 # why l? isn't l moving?
+                            
+                            
+        
+        
+        r += 1
+
+    
+    print(ans)
+
+if __name__ == "__main__":
+    main()
