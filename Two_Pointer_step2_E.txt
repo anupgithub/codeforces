@@ -1,0 +1,35 @@
+from collections import defaultdict
+
+def main():
+    n, s = map(int, input().split())
+    v = list(map(int, input().split()))
+    
+    r = 0
+    ans = 0
+    sum = 0
+    l = 0
+    r = 0
+
+    numbers = defaultdict(int)
+    
+    # key insight is to understand that there might be duplicates, so 
+    # we cannot use set. We need to use a dictionary with count.
+    
+    while r < len(v):
+        numbers[v[r]] +=1
+        
+        while len(numbers) > s:
+            if numbers[v[l]] == 1:
+                del numbers[v[l]]
+            elif numbers[v[l]] > 1:
+                numbers[v[l]] -= 1
+            l +=1
+            
+        ans += r - l + 1 
+        r += 1
+
+    
+    print(ans)
+
+if __name__ == "__main__":
+    main()
